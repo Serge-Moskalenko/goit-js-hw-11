@@ -7,15 +7,23 @@ export default class ApiServise{
     };
 
     async fetch(){
+    
+        const searchParams = new URLSearchParams({
+            key: '30433479-40b3b6ba46d38a0b1e7112d23',
+            q: this.searchQuery,
+            image_type: "photo",
+            orientation: "horizontal",
+            safesearch: true,
+            page: this.page,
+            per_page: 40,
+        });
 
-    const key = '30433479-40b3b6ba46d38a0b1e7112d23';
+        const request = `https://pixabay.com/api/?${searchParams}`;
 
-    const request = `https://pixabay.com/api/?key=${key}&q=${this.searchQuery}&image_type=photo&orientation=horizontal&safesearch=true&page=${this.page}&per_page=40`;
-
-    const data = await axios.get(request);
+        const data = await axios.get(request);
        
-    this.incrementPage();
-        return data;
+        this.incrementPage();
+            return data;
     };
     
     get query() {
