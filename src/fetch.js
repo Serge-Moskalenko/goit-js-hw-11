@@ -8,7 +8,8 @@ export default class ApiServise{
 
     async fetch(){
     
-        const searchParams = new URLSearchParams({
+        try {
+          const searchParams = new URLSearchParams({
             key: '30433479-40b3b6ba46d38a0b1e7112d23',
             q: this.searchQuery,
             image_type: "photo",
@@ -23,7 +24,11 @@ export default class ApiServise{
         const data = await axios.get(request);
        
         this.incrementPage();
-            return data;
+            return data;  
+        } catch (error) {
+            console.log(error.message)
+        };
+        
     };
     
     get query() {
